@@ -1,13 +1,19 @@
 import os
+import sys
 
+from loguru import logger
 from uplink import Consumer, get, Path, Query, params, headers, returns, post, delete
 
 class Mailgun(Consumer):
     """A Python Client for the Mailgun API."""
     def __init__(self, apikey=None):
         if apikey is None:
-            super(Mailgun, self).__init__(base_url="https://api.mailgun.net",
-                                      auth=('api', os.environ['MAILGUN_API_KEY']))
+            try:
+                super(Mailgun, self).__init__(base_url="https://api.mailgun.net",
+                                          auth=('api', os.environ['MAILGUN_API_KEY']))
+            except KeyError as e:
+                logger.error('You did not set `MAILGUN_API_KEY` yet')
+                sys.exit(404)
         else:
             super(Mailgun, self).__init__(base_url="https://api.mailgun.net",
                                           auth=('api', apikey))

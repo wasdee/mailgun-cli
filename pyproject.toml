@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mailgun-cli"
-version = "0.1.6"
+version = "0.1.7"
 description = "control mailgun account using cli and python api"
 authors = ["Nutchanon Ninyawee  <dev@nutchanon.org>"]
 
