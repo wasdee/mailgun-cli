@@ -6,8 +6,8 @@ from mailgun_cli import Mailgun
 
 def clear_existing_routes(mailgun, mark):
     # STEP 1: delete all existing routes with mark
-    logger.info('Delete Existing routes created by this Cli')
-    for route in tqdm(mailgun.list_routes()['items'], desc='routes to delete'):
+    logger.info(f'Delete Existing routes with description `{mark}`')
+    for route in tqdm(mailgun.list_routes()['items'], desc='routes to check and may delete'):
         if route['description'].startswith(mark):
             id = route['id']
             resp = mailgun.delete(id)
@@ -29,9 +29,11 @@ def update_from_csv(url, mark='[created by mailgun-cli]', proirity=1, stop=True)
         expression = f"match_recipient('{from_}')"
         action = f"forward('{to}')"
         if stop:
-            action += ", stop()"
+            action = (action, 'stop()')
         description = f"{mark}"
+
         resp = mailgun.create_route(expression=expression, action=action, priority=proirity, description=description)
+
         assert resp.status_code == 200
 
 
