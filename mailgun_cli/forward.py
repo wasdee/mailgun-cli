@@ -13,7 +13,7 @@ def clear_existing_routes(mailgun, mark):
             resp = mailgun.delete(id)
             assert resp.status_code == 200
 
-def update_from_csv(url, mark='[created by mailgun-cli]', proirity=1, stop=True):
+def update_from_csv(url, mark='[created by mailgun-cli]', proirity=50, stop=True):
     """update the route using csv"""
     logger.info(f'update the route using csv: {url}')
     forwardlist = pd.read_csv(url)
