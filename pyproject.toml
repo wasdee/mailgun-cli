@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mailgun-cli"
-version = "0.1.7"
+version = "0.1.9"
 description = "control mailgun account using cli and python api"
 authors = ["Nutchanon Ninyawee  <dev@nutchanon.org>"]
 
@@ -15,7 +15,7 @@ keywords = ['forward', 'mail', 'mailgun', 'cli']
 mailgun = 'mailgun_cli.cli:main'
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 uplink = "^0.8.0"
 click = "^7.0"
 pandas = "^0.24.1"
